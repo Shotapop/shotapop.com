@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SHOTAPOP.COM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Play&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black: #050505;
+  --panel: #0e0e0e;
+  --red: #8b0000;
+  --red-glow: #ff1a1a;
+  --steel: #9a9a9a;
+  --white: #f1f1f1;
+/* HIDE SYSTEM CURSOR COMPLETELY */
+html, body, * {
+  cursor: none !important;
+}
+/* PREVENT POINTER CURSOR ON HOVER */
+a, a:hover,
+button, button:hover,
+input, input:hover,
+textarea, textarea:hover,
+select, select:hover {
+  cursor: none !important;
+}
+
+  /* =========================
+     CUSTOM CURSOR (EDIT HERE)
+  ========================= */
+  --cursor-img: url("img/shadow-cursor.png");
+}
+
+/* =========================
+   FORCE & HIDE SYSTEM CURSOR
+========================= */
+html, body {
+  cursor: none !important;
+}
+
+/* =========================
+   GLITCH CURSOR ELEMENT
+========================= */
+#glitch-cursor {
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  background-image: var(--cursor-img);
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 999999;
+  mix-blend-mode: normal;
+  animation: cursor-flicker 0.3s infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes glow-pulse {
+  0%   { filter: drop-shadow(0 0 4px rgba(255,0,0,0.6)); }
+  50% {
+    filter:
+      drop-shadow(0 0 10px rgba(255, 0, 0, 0.9))
+      brightness(80%);
+  }
+  100% { filter: drop-shadow(0 0 4px rgba(255,0,0,0.6)); }
+}
+
+#glitch-cursor {
+  animation:
+    cursor-flicker 0.5s infinite,
+    glow-pulse 1.2s infinite;
+}
+
+@keyframes cursor-flicker {
+  0% { opacity: 2; filter: hue-rotate(0deg); }
+  50% { opacity: 1; filter: hue-rotate(30deg); }
+  100% { opacity: 2; filter: hue-rotate(0deg); }
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #120000, #000000 70%);
+  color: var(--white);
+  font-family: "Play", sans-serif;
+  letter-spacing: 0.3px;
+}
+
+a {
+  color: var(--red-glow);
+  text-shadow: 0 0 4px var(--red-glow);
+}
+
+a:hover {
+  color: white;
+  text-shadow: 0 0 8px var(--red-glow);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  border: 2px solid var(--red);
+  box-shadow: 0 0 35px rgba(255,0,0,0.35);
+  background: linear-gradient(to bottom, #070707, #000);
+}
+
+.header {
+  padding: 14px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 3px;
+  background: linear-gradient(to right, #1a0000, #8b0000, #1a0000);
+  border-bottom: 2px solid var(--red);
+  text-shadow: 0 0 10px rgba(255,0,0,0.6);
+  font-family: 'Cinzel', serif;
+  cursor: default;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid #300000;
+  padding: 12px;
+  position: relative;
+}
+
+.panel hr {
+  border: 0;
+  height: 1px;
+  background: var(--red);
+  margin-top: 25px;
+}
+
+.panel h2 {
+  color: var(--red-glow);
+  font-size: 15px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--red);
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.panel h2:hover {
+  animation: glitch 0.5s infinite;
+}
+
+/* =================== SOCIAL ICONS =================== */
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.socials a img {
+  width: 35px;
+  height: 35px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: block;
+  border-radius: 100%;
+  border: 5px solid rgba(255, 0, 0, 0.0);
+}
+
+.socials a:hover img {
+  filter: drop-shadow(0 0 6px var(--red-glow));
+  transform: scale(1.2);
+}
+
+/* IMAGE GLITCH EFFECT */
+img {
+  width: 100%;
+  border: 1px solid var(--red);
+  filter: grayscale(10%) contrast(110%);
+  display: block;
+  position: relative;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.glitch-img:hover {
+  animation: glitch 0.5s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0,0); filter: hue-rotate(0deg);}
+  20% { transform: translate(-2px,2px); filter: hue-rotate(20deg);}
+  40% { transform: translate(2px,-2px); filter: hue-rotate(-20deg);}
+  60% { transform: translate(-1px,1px); filter: hue-rotate(15deg);}
+  80% { transform: translate(1px,-1px); filter: hue-rotate(-15deg);}
+  100% { transform: translate(0,0); filter: hue-rotate(0deg);}
+}
+
+.muted {
+  color: var(--steel);
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.emo {
+  font-style: italic;
+  color: #cfcfcf;
+}
+
+.lyric {
+  color: var(--red-glow);
+  text-align: center;
+  font-size: 13px;
+  animation: pulse 3s infinite;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.song-name {
+  margin-bottom: 10px;
+  font-family: 'Cinzel', serif;
+  color: var(--red-glow);
+  text-align: center;
+  font-size: 16px;
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 4px #500; }
+  50% { text-shadow: 0 0 12px #f00; }
+  100% { text-shadow: 0 0 4px #500; }
+}
+
+ul {
+  padding-left: 16px;
+  margin-bottom: 25px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+li::marker {
+  color: var(--red);
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 11px;
+  color: var(--steel);
+  border-top: 1px solid var(--red);
+}
+
+/* =========================
+   MUSIC PLAYER
+========================= */
+.music-player {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.music-player hr {
+  border: 0;
+  height: 1px;
+  background: var(--red);
+  margin-top: 30px;
+}
+
+.music-player button {
+  margin-bottom: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #8b0000;
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.music-player button:hover {
+  background: #ff1a1a;
+  box-shadow: 0 0 10px #ff1a1a;
+  animation: glitch-mini 0.4s infinite;
+}
+
+@keyframes glitch-mini {
+  0% { transform: translate(0,0) rotate(0deg); }
+  25% { transform: translate(-1px,1px) rotate(-1deg); }
+  50% { transform: translate(1px,-1px) rotate(1deg); }
+  75% { transform: translate(-1px,1px) rotate(-1deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
+
+.progress-container input[type=range] {
+  height: 4px;
+  width: 100%;
+  margin-top: 12px;
+  cursor: pointer;
+  accent-color: #ff1a1a;
+}
+
+.time {
+  font-size: 10px;
+  color: #cfcfcf;
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   EASTER EGG (HIDDEN TEXT)
+========================= */
+.easter-egg {
+  text-align: center;
+  margin-top: 10px;
+  height: 2px;
+}
+
+.easter-egg span {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--red-glow);
+  opacity: 0;
+  white-space: nowrap;
+}
+
+.easter-egg span.active {
+  opacity: 0.3;
+  animation: glitch-mini 0.25s infinite;
+}
+
+/* =========================
+   TEXT BARS
+========================= */
+.meter label {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+.bar {
+  height: 4px;
+  background: #200000;
+  margin-top: 3px;
+  margin-bottom: 7px;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  background: var(--red-glow);
+  box-shadow: 0 0 6px var(--red-glow);
+}
+</style>
+</head>
+
+<body>
+
+<div id="glitch-cursor"></div>
+
+<div class="container">
+
+  <div class="header">
+    SHOTAPOP - I am All Of Me
+  </div>
+
+  <div class="grid">
+
+    <div class="panel">
+      <img src="img/profile.png" alt="profile image" class="glitch-img click-sound">
+
+      <p class="muted">Last seen: awake at night<br>
+      Location  : nowhere / everywhere</p>
+
+      <div class="music-player">
+        <hr>
+        <p class="song-name"><a href="https://www.youtube.com/watch?v=NucG0kD3pkg" target="_blank">I Am... All of Me</a></p>
+        <audio id="audio" src="audio/all-of-me.mp3"></audio>
+        <button id="playPause">►</button>
+        <div class="progress-container">
+          <input type="range" id="progress" value="0" min="0" step="0.1">
+        </div>
+        <div class="time">
+          <span id="current">0:00</span> / <span id="duration">0:00</span>
+        </div>
+        <hr>
+      </div>
+
+      <p class="lyric" id="lyricBox"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Profile...</h2>
+      <p><em><u>˖ ࣪ ִ𖤐 SHOTA or ALEX - <small> he / him</small></u></em></p>
+      <p class="emo">
+        <small>- 20. emotionally loud, mentally exhausted.<br>
+        learning graphic design, autistic as hell.<br>
+        extroverted until i disappear.</small>
+      </p>
+
+      <h2>i can tolerate...</h2>
+      <ul>
+        <div class="meter">
+          <label>attention</label>
+          <div class="bar"><span style="width:90%"></span></div>
+          <label>late-night talk</label>
+          <div class="bar"><span style="width:78%"></span></div>
+          <label>anime, games, visual noise</label>
+          <div class="bar"><span style="width:83%"></span></div>
+          <label>people who understand me </label>
+          <div class="bar"><span style="width:100%"></span></div>
+        </div>
+      </ul>
+
+      <h2>don’t test me...</h2>
+      <ul>
+        <div class="meter">
+          <label>any form of bullying</label>
+          <div class="bar"><span style="width:0%"></span></div>
+          <label>racism, sexism, ageism </label>
+          <div class="bar"><span style="width:0.9%"></span></div>
+          <label>homophobia, transphobia </label>
+          <div class="bar"><span style="width:2%"></span></div>
+          <label>manipulation, fake kindness</label>
+          <div class="bar"><span style="width:0.5%"></span></div>
+        </div>
+      </ul>
+
+      <hr>
+
+      <div class="easter-egg" id="easterEgg">
+        <span id="easterText"></span>
+      </div>
+
+      <div class="socials">
+        <a href="https://x.com/shotapop_" target="_blank"><img src="icons/twitter.svg"></a>
+        <a href="https://steamcommunity.com/id/shotapop/" target="_blank"><img src="icons/steam.svg"></a>
+        <a href="https://t.me/shotapop" target="_blank"><img src="icons/telegram.svg"></a>
+        <a href="https://discord.com/users/832663110267306104/" target="_blank"><img src="icons/discord.svg"></a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Fandoms...</h2>
+      <ul>
+        <li><small><a href="https://share.google/0SRYQ47tdTlG0mD10" target="_blank"><u>Link Click</u></a> / <a href="https://share.google/PyWnBHkDaReP2kXa4" target="_blank"><u>Sabikui Bisco</u></a></small></li>
+        <li><small><a href="https://share.google/AgeSW9BdAcGzx2ua7" target="_blank"><u>Sonic the Hedgehog</u></a></small></li>
+        <li><small><a href="https://share.google/NJkQtcsjxF51iK0ab" target="_blank"><u>L4D2</u></a> / <a href="https://share.google/q9azzQ1i2A1PY8CH5" target="_blank"><u>TBOI</u></a> / <a href="https://share.google/QAgdGPqxOFpawTzRd" target="_blank"><u>D:BH</u></a></small></li>
+      </ul>
+
+      <h2>Music...</h2>
+      <ul>
+        <li><small><a href="https://share.google/A8xzX44O7nbFrIHB2" target="_blank"><u>Bring Me The Horizon</u></a></small></li>
+        <li><small><a href="https://share.google/MNHJeIO4pcKjf9ek6" target="_blank"><u>Architects</u></a></small></li>
+        <li><small><a href="https://share.google/XREhKZ51ao5bnj5FZ" target="_blank"><u>Crush 40</u></a></small></li>
+      </ul>
+
+      <img src="img/shadow.png" alt="shadow themed image" class="glitch-img click-sound">
+    </div>
+
+  </div>
+
+  <div class="footer">
+    built from noise, distortion, and unresolved feelings
+  </div>
+
+</div>
+
+<script>
+/* =========================
+   GLITCH CURSOR SCRIPT
+========================= */
+const cursor = document.getElementById("glitch-cursor");
+
+document.addEventListener("mousemove", e => {
+  const jitterX = (Math.random() - 0.5) * 1;
+  const jitterY = (Math.random() - 0.5) * 1;
+
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
+
+  cursor.style.transform =
+    `translate(-50%, -50%) translate(${jitterX}px, ${jitterY}px)`;
+});
+
+/* ================= MUSIC PLAYER JS ================= */
+const audio = document.getElementById('audio');
+const playPauseBtn = document.getElementById('playPause');
+const progress = document.getElementById('progress');
+const currentTime = document.getElementById('current');
+const durationTime = document.getElementById('duration');
+const lyricBox = document.getElementById("lyricBox");
+
+audio.addEventListener('loadedmetadata', () => {
+  progress.max = audio.duration;
+  durationTime.textContent = formatTime(audio.duration);
+});
+
+function formatTime(sec) {
+  const minutes = Math.floor(sec / 60);
+  const seconds = Math.floor(sec % 60);
+  return `${minutes}:${seconds < 10 ? '0'+seconds : seconds}`;
+}
+
+audio.addEventListener('timeupdate', () => {
+  progress.value = audio.currentTime;
+  currentTime.textContent = formatTime(audio.currentTime);
+});
+
+progress.addEventListener('input', () => {
+  audio.currentTime = progress.value;
+});
+
+playPauseBtn.addEventListener('click', () => {
+  if(audio.paused) {
+    audio.play();
+    playPauseBtn.textContent = '❚❚';
+    lyricsStarted = true;
+  } else {
+    audio.pause();
+    playPauseBtn.textContent = '►';
+  }
+});
+
+/* =========================
+   GLOBAL CLICK SOUND (ADDED)
+========================= */
+const clickSound = new Audio("audio/click.mp3");
+clickSound.volume = 0.6;
+
+document.addEventListener("click", (e) => {
+  const clickable = e.target.closest("a, button, input, img.click-sound");
+  if (!clickable) return;
+  clickSound.currentTime = 0;
+  clickSound.play();
+});
+
+/* =========================
+   EASTER EGG LOGIC
+========================= */
+const egg = document.getElementById("easterEgg");
+const eggText = document.getElementById("easterText");
+const secretText = "S*NADOW IS A BULLSHIT";
+let eggActive = false;
+
+egg.addEventListener("mouseenter", () => {
+  if (eggActive) return;
+  eggActive = true;
+
+  eggText.textContent = "";
+  eggText.classList.add("active");
+
+  let i = 0;
+  const typing = setInterval(() => {
+    eggText.textContent += secretText[i];
+    i++;
+    if (i >= secretText.length) clearInterval(typing);
+  }, 20);
+
+  setTimeout(() => {
+    eggText.classList.remove("active");
+    eggText.textContent = "";
+    eggActive = false;
+  }, 4000);
+});
+
+/* =========================
+   LYRICS (its bad)
+========================= */
+
+const lyrics = [
+  { time: "0:28", text: "I see no, hear no evil" }, 
+  { time: "0:31", text: "Black writing's on the wall" }, 
+  { time: "0:34", text: "Unleashed a million faces" }, 
+  { time: "0:36", text: "And one by one, they fall" },
+  { time: "0:39", text: "Black-hearted evil" },
+  { time: "0:41", text: "Brave-hearted hero" },
+  { time: "0:44", text: "I am all," },
+  { time: "0:45", text: "I am all" },
+  { time: "0:47", text: "I am" },
+  { time: "0:49", text: "I- I- I-" },
+  { time: "0:52", text: "I am" },
+  { time: "0:54", text: "Here we go, buddy," },
+  { time: "0:55", text: "Here we go, buddy" },
+  { time: "0:56", text: "Here we go" },
+  { time: "0:57", text: "Here we go, buddy," },
+  { time: "0:58", text: "Here we go" },
+  { time: "0:59", text: "Go ahead and try to see through me" },
+  { time: "1:02", text: "Do it if you dare" },
+  { time: "1:04", text: "One step forward, two steps back" },
+  { time: "1:06", text: "I'm here" },
+  { time: "1:09", text: "Do it, do it, do it" },
+  { time: "1:11", text: "Do it!" },
+  { time: "1:12", text: "Can you see all of me?" },
+  { time: "1:14", text: "Walk into my mystery" },
+  { time: "1:16", text: "Step inside and hold on for dear life" },
+  { time: "1:21", text: "Do you remember me?" },
+  { time: "1:23", text: "Capture you or set you free" },
+  { time: "1:26", text: "I am all" },
+  { time: "1:27", text: "I am all of me" },
+  { time: "1:30", text: "I am" },
+  { time: "1:31", text: "I am all of me" },
+  { time: "1:33", text: "I am" },
+  { time: "1:34", text: "I am all of me" },
+  { time: "1:35", text: "I am" },
+  { time: "1:36", text: "I am all of me" },
+  { time: "1:40", text: "I see and feel the evil" },
+  { time: "1:42", text: "My hands will crush 'em all" },
+  { time: "1:45", text: "You think you have the answers" },
+  { time: "1:47", text: "I'll laugh and watch you fall" },
+  { time: "1:50", text: "Black-hearted evil" },
+  { time: "1:52", text: "Brave-hearted hero" },
+  { time: "1:55", text: "I am all," },
+  { time: "1:56", text: "I am all" },
+  { time: "1:58", text: "I am" },
+  { time: "2:00", text: "I- I- I-" },
+  { time: "2:03", text: "I am" },
+  { time: "2:05", text: "Here we go, buddy," },
+  { time: "2:06", text: "Here we go, buddy" },
+  { time: "2:07", text: "Here we go" },
+  { time: "2:08", text: "Here we go, buddy," },
+  { time: "2:09", text: "Here we go" },
+  { time: "2:10", text: "Go ahead and try to see through me" },
+  { time: "2:12", text: "Do it if you dare" },
+  { time: "2:15", text: "One step forward, two steps back" },
+  { time: "2:17", text: "I'm here" },
+  { time: "2:20", text: "Do it, do it, do it" },
+  { time: "2:22", text: "Do it!" },
+  { time: "2:23", text: "Can you see all of me?" },
+  { time: "2:25", text: "Walk into my mystery" },
+  { time: "2:27", text: "Step inside and hold on for dear life" },
+  { time: "2:32", text: "Do you remember me?" },
+  { time: "2:34", text: "Capture you or set you free" },
+  { time: "2:36", text: "I am all" },
+  { time: "2:37", text: "I am all of me" },
+  { time: "2:41", text: "I am" },
+  { time: "2:42", text: "I am all of me" },
+  { time: "2:43", text: "I am" },
+  { time: "2:44", text: "I am all of me" },
+  { time: "2:46", text: "I am" },
+  { time: "2:47", text: "I am all of me" },
+  { time: "2:50", text: "I am, I am everyone," },
+  { time: "2:52", text: "everywhere, anyhow, anyway," },
+  { time: "2:54", text: "any will, any day" },
+  { time: "2:55", text: "I am, I am everyone," },
+  { time: "2:57", text: "everywhere, anyhow, anyway," },
+  { time: "2:59", text: "any will, any day" },
+  { time: "3:00", text: "I am, I am, I am-" },
+  { time: "3:05", text: "I am, I am, I am" },
+  { time: "3:09", text: "I am" },
+  { time: "3:10", text: "Do it, do it, do it" },
+  { time: "3:12", text: "Do it!" },
+  { time: "3:13", text: "Can you see all of me?" },
+  { time: "3:15", text: "Walk into my mystery" },
+  { time: "3:17", text: "Step inside and hold on for dear life" },
+  { time: "3:22", text: "Do you remember me?" },
+  { time: "3:24", text: "Capture you or set you free" },
+  { time: "3:26", text: "I am all" },
+  { time: "3:27", text: "I am all of me" },
+  { time: "3:31", text: "I am" },
+  { time: "3:32", text: "I am all of me" },
+  { time: "3:33", text: "I am" },
+  { time: "3:34", text: "I am all of me" },
+  { time: "3:36", text: "I am" },
+  { time: "3:37", text: "I am all of me" },
+  { time: "3:38", text: "I am" },
+  { time: "3:39", text: "I am all of me-" },
+  { time: "3:44", text: "I AM... I AM ALL OF ME!" }
+];
+
+function toMilliseconds(t) {
+  const parts = t.split(":").map(Number);
+
+  let m = 0, s = 0, ms = 0;
+
+  if (parts.length === 3) {
+    [m, s, ms] = parts;
+  } else if (parts.length === 2) {
+    [m, s] = parts;
+  } else {
+    s = parts[0];
+  }
+
+  return (m * 60 * 1000) + (s * 1000) + ms;
+}
+
+let currentLine = -1;
+let typingInterval = null;
+let lyricsStarted = false;
+let isTyping = false;
+
+function typeLine(text, speed = 18, stay = 200) {
+  clearInterval(typingInterval);
+  lyricBox.textContent = "";
+  let charIndex = 0;
+  isTyping = true;
+
+  typingInterval = setInterval(() => {
+    lyricBox.textContent += text[charIndex];
+    charIndex++;
+
+    if (charIndex >= text.length) {
+      clearInterval(typingInterval);
+      isTyping = false;
+      setTimeout(() => {}, stay);
+    }
+  }, speed);
+}
+
+audio.addEventListener("timeupdate", () => {
+  if (!lyricsStarted || isTyping) return;
+
+  const time = audio.currentTime;
+  let targetIndex = currentLine;
+
+  for (let i = 0; i < lyrics.length; i++) {
+if (time * 1000 >= toMilliseconds(lyrics[i].time)) {
+
+      targetIndex = i;
+    } else {
+      break;
+    }
+  }
+
+  if (targetIndex !== currentLine && lyrics[targetIndex]) {
+    currentLine = targetIndex;
+    typeLine(lyrics[targetIndex].text);
+  }
+});
+
+</script>
+
+</body>
+</html>
